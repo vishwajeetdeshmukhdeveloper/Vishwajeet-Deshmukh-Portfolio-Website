@@ -68,6 +68,17 @@
 
 <body class="bg-transparent text-white antialiased relative selection:bg-white/20 selection:text-white">
 
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="space-y-4 text-center">
+            <span class="font-mono text-[10px] text-white/50 tracking-[0.4em] uppercase block">Loading Experience</span>
+            <div class="font-display text-4xl font-extralight text-white tracking-widest"><span id="preloader-progress">0</span>%</div>
+            <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden mt-4">
+                <div id="preloader-bar" class="absolute inset-y-0 left-0 bg-white w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- CANVAS BACKGROUND -->
     <div id="canvas-container">
         <canvas id="scroll-image"></canvas>
@@ -701,13 +712,33 @@
         const frameCount = 147;
 
         const currentFrame = index => (
-            `frames/ezgif-frame-${(index).toString().padStart(3, '0')}.png`
+            `frames/ezgif-frame-${(index).toString().padStart(3, '0')}.webp`
         );
 
         const images = [];
+        let loadedFrames = 0;
+        const requiredFramesBeforeStart = 30; // Load ~20% of frames before showing page
+
         const preloadImages = () => {
             for (let i = 1; i <= frameCount; i++) {
                 const img = new Image();
+                img.onload = () => {
+                    loadedFrames++;
+                    // Update preloader UI
+                    const percent = Math.floor((loadedFrames / frameCount) * 100);
+                    document.getElementById('preloader-progress').innerText = percent;
+                    document.getElementById('preloader-bar').style.width = `${percent}%`;
+
+                    // Hide preloader when minimum required frames are loaded
+                    if (loadedFrames === requiredFramesBeforeStart) {
+                        const preloader = document.getElementById('preloader');
+                        preloader.classList.add('opacity-0');
+                        setTimeout(() => preloader.style.display = 'none', 500);
+                        
+                        // Resize canvas and render first frame immediately
+                        resizeCanvas();
+                    }
+                };
                 img.src = currentFrame(i);
                 images.push(img);
             }

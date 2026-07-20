@@ -1,0 +1,24 @@
+{
+  "name": "scroll-animation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compress.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishwajeetdeshmukhdeveloper/Vishwajeet-Deshmukh-Portfolio-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vishwajeetdeshmukhdeveloper/Vishwajeet-Deshmukh-Portfolio-Website/issues"
+  },
+  "homepage": "https://github.com/vishwajeetdeshmukhdeveloper/Vishwajeet-Deshmukh-Portfolio-Website#readme",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
+}
