@@ -1,0 +1,10 @@
+# Only exclude files not needed in production
+node_modules/
+*.code-workspace
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+image.jpg/
