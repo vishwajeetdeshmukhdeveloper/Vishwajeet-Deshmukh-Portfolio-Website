@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vishwajeetdeshmukhdeveloper/Vishwajeet-Deshmukh-Portfolio-Website#readme",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "sharp": "^0.35.3"
   }
 }
